@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Security.Cryptography;
 
 int betnumber;
@@ -26,8 +26,8 @@ if (playButton == 1)
         Console.Write("How much would you like to bet?");
         Console.Write("\t\t\t\t\t\t\t\t\tYour balance: " + balance + "\n");
         betnumber = Convert.ToInt32(Console.ReadLine());
-        if (betnumber <= balance)
-        {
+    if (betnumber <= balance)
+    {
             balance = balance - betnumber;
             Console.Clear();
             Console.Write("\t\t\t\t\t\t\t\t\t\t\t\tYour balance: " + balance + "\n");
@@ -58,22 +58,12 @@ if (playButton == 1)
             hit++;
             cardcoins++;
              for (int i = 0; i < hit; i++)
-        {
-           Console.WriteLine($" ___\n|   |\n| {cardDraw[i]} |\n|___|");
-        } 
+             {
+                Console.WriteLine($" ___\n|   |\n| {cardDraw[i]} |\n|___|");
+             } 
+        }
 
-        /*if (cardChoices == 4)
-        {
-            for (int i = 0; i < cardDraw.Count; i++)
-            {
-                grandtotal = grandtotal + cardDraw[i];
-            }
-        } else 
-        {
-
-        }*/
-
-        }else if (hitOrStand == 2)
+        else if (hitOrStand == 2)
         {
             for (int i = 0; i < cardcoins; i++)
             {
@@ -85,15 +75,13 @@ if (playButton == 1)
         {
             Console.WriteLine("You have chosen an invalid option"); 
         }
-        { 
         }
-        }
-        }else 
-        {
-            Console.WriteLine("You cannot bet more than you have.");
-        }
+    }else 
+    {
+        Console.WriteLine("You cannot bet more than you have.");
+    }
         
-    //}
+    
     
 }
 
@@ -107,6 +95,17 @@ if (playButton == 1)
 
 
 
+
+
+
+
+
+
+
+
+
+
+Console.ReadKey();
 
 
 
