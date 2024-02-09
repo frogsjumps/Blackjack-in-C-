@@ -77,7 +77,7 @@ if (playButton == 1)
             Console.WriteLine("You have chosen an invalid option"); 
         }
         }
-        if (cardChoices >= 4)
+        if (cardcoins == 4)
         {
             for (int i = 0; i < cardcoins; i++)
             {
