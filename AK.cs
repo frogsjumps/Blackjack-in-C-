@@ -11,6 +11,7 @@ int hitOrStand;
 int cardChoices = 2;
 int grandtotal = 0;
 int cardcoins = 0;
+string enter;
 
 Console.WriteLine("Welcome to BlackJack!, press 1 for rules or press 2 to play!");
 playButton = Convert.ToInt32(Console.ReadLine());
@@ -76,6 +77,20 @@ if (playButton == 1)
             Console.WriteLine("You have chosen an invalid option"); 
         }
         }
+        if (cardChoices >= 4)
+        {
+            for (int i = 0; i < cardcoins; i++)
+            {
+                grandtotal += cardDraw[i];
+            }
+            Console.WriteLine("You stand. Your grand total is " + grandtotal);
+        }
+        Console.WriteLine("Press enter to continue");
+        enter = Console.ReadLine();
+
+        Console.Clear();
+
+        
     }else 
     {
         Console.WriteLine("You cannot bet more than you have.");
@@ -85,26 +100,6 @@ if (playButton == 1)
     
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Console.ReadKey();
 
 
@@ -114,6 +109,3 @@ Console.ReadKey();
 
 
 
-
-
-Console.ReadKey();
