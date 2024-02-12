@@ -84,7 +84,7 @@ if (playButton == 1)
             Console.WriteLine("You busted");
             cardChoices = 4;
         }
-            
+            playertotal = 0;
         }
 
         else if (hitOrStand == 2)
@@ -100,7 +100,7 @@ if (playButton == 1)
             Console.WriteLine("You have chosen an invalid option"); 
         }
         }
-        if (cardcoins == 4)
+        if (cardcoins == 4 || cardChoices == 4)
         {
             for (int i = 0; i < cardcoins; i++)
             {
@@ -122,7 +122,6 @@ if (playButton == 1)
 }
 
 Console.ReadKey();
-
 
 
 
