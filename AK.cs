@@ -149,7 +149,7 @@ if (playButton == 1) // just gives rules.
                 dealertotal += dealerDraw[i];
             }
 
-        while (dealertotal < 17 && cardChoices < 4)
+        while (dealertotal < 17 && cardChoices != 4)
         {
             dealertotal = 0;
             dealerCards++;
@@ -174,7 +174,7 @@ if (playButton == 1) // just gives rules.
             if (dealertotal > 21)
             {
                 Console.WriteLine("The dealer busted! The dealers grand total is now 0");
-                cardChoices = 5;
+                cardChoices = 4;
                 dealertotal = 0;
             } 
             else if (dealertotal == 21)
