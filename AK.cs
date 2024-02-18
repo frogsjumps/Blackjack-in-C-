@@ -29,11 +29,13 @@ if (playButton == 1) // just gives rules.
 } else if (playButton == 2) // sets off the game sequence
 {     
     Console.Clear(); // clears previous prompt
+
     //while (balance != 0)
     //{
         Console.Write("How much would you like to bet?");
-        Console.Write("\t\t\t\t\t\t\t\t\tYour balance: " + balance + "\n");
-        betAmount = Convert.ToInt32(Console.ReadLine());
+        Console.Write("\t\t\t\t\t\t\t\t\tYour balance: " + balance + "\n"); // displays balance on top-right corner
+        betAmount = Convert.ToInt32(Console.ReadLine()); // reads the bet amount
+
     if (betAmount <= balance)
     {
             balance = balance - betAmount;
@@ -57,15 +59,17 @@ if (playButton == 1) // just gives rules.
 
         while (cardChoices < 4)
         {
-        Console.WriteLine("Would you like to 1) hit or 2) stand ");
-        hitOrStand = Convert.ToInt32(Console.ReadLine());
-        if (hitOrStand == 1)
+        Console.WriteLine("Would you like to 1) hit or 2) stand "); // gives user the basic blackjack options
+        hitOrStand = Convert.ToInt32(Console.ReadLine()); // reads the corresponding NUMBER to the action user wants to do
+        if (hitOrStand == 1) // hit
         {
             Console.Clear();
-            cardChoices++;
-            hit++;
-            cardcoins++;
-             for (int i = 0; i < hit; i++)
+            Console.Write("\t\t\t\t\t\t\t\t\t\t\t\tYour balance: " + balance + "\n");
+            cardChoices++; // increments card choices, so player cant hit over 4
+            hit++; // increments hit so user can draw another card
+            cardcoins++; // increments because its a throwaway variable that does the same as cardchoices
+
+             for (int i = 0; i < hit; i++) // draw card
              {
                 Random numberGen = new Random();
                 num01 = numberGen.Next(1 ,11);
@@ -73,38 +77,39 @@ if (playButton == 1) // just gives rules.
                 Console.WriteLine($" ___\n|   |\n| {cardDraw[i]} |\n|___|");
              } 
 
-               for (int i = 0; i < cardcoins; i++)
+               for (int i = 0; i < cardcoins; i++) // counts cards for the bust feature and the blackjack feature
             {
                 playertotal += cardDraw[i];
             }
 
-        if (playertotal < 21)
+        if (playertotal < 21) // does nothing, user can go again
         {
             
-        } else if (playertotal == 21)
+        } else if (playertotal == 21) // blackjack! ends the loop immediatly as user hit 21
         {
             Console.WriteLine("Blackjack!");
             cardChoices = 4;
-        } else 
+        } else  // bust. ends loop immediatly as user busted.
         {
             Console.WriteLine("Your busted. Your grandtotal is 0");
             cardChoices = 5;
             grandTotalSwitch = false;
         }
-            playertotal = 0;
+            playertotal = 0; // resets total as to not stack playertotal values in loop
         }
 
-        else if (hitOrStand == 2)
+        else if (hitOrStand == 2) // stand, counts the total value of the cards
         {
-            grandtotal = 0;
+            grandtotal = 0; // resets grandtotal
 
-            for (int i = 0; i < cardcoins; i++)
+            for (int i = 0; i < cardcoins; i++) // counts value
             {
                 grandtotal = grandtotal + cardDraw[i];
             }
+
             Console.WriteLine("You stand. You end your turn with a grand total of: " + grandtotal);
             cardChoices = 4;
-            grandTotalSwitch = false;
+            grandTotalSwitch = false; // bool turns false as to not trigger the count for 4 cards
 
         } else 
         {
@@ -119,8 +124,10 @@ if (playButton == 1) // just gives rules.
             }
             Console.WriteLine("Your grand total is " + grandtotal);
         }
+        
         Console.WriteLine("Press enter to continue");
         enter = Console.ReadLine();
+        //                  -----------------------------DEALER-TURN-------------------
 
         Console.Clear();
         Console.WriteLine("It is now the dealers turn");
@@ -220,6 +227,3 @@ if (playButton == 1) // just gives rules.
 }
 
 Console.ReadKey();
-
-
-
