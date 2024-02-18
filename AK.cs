@@ -47,7 +47,7 @@ if (playButton == 1) // just gives rules.
         for (int i = 0; i <= playerCards; i++)
         {
             Random numberGen = new Random();
-            num01 = numberGen.Next(1,11);
+            num01 = numberGen.Next(4,6);
             cardDraw.Add(num01);
         }
         Console.WriteLine("You drew:");
@@ -59,8 +59,26 @@ if (playButton == 1) // just gives rules.
 
         while (cardChoices < 4)
         {
-        Console.WriteLine("Would you like to 1) hit or 2) stand "); // gives user the basic blackjack options
-        hitOrStand = Convert.ToInt32(Console.ReadLine()); // reads the corresponding NUMBER to the action user wants to do
+        if (cardDraw[0] == cardDraw [1] && cardDraw[0] + cardDraw[1] <= 11)
+        {
+             Console.WriteLine("1) hit  ||  2) stand  ||  3) split  ||  4) double"); // gives user the basic blackjack options
+             hitOrStand = Convert.ToInt32(Console.ReadLine()); // reads the corresponding NUMBER to the action user wants to do
+        } 
+        else if (cardDraw[0] + cardDraw[1] <= 11)
+        {
+            Console.WriteLine("1) hit  ||  2) stand  ||  4) Double");
+            hitOrStand = Convert.ToInt32(Console.ReadLine()); // reads the corresponding NUMBER to the action user wants to do
+        } 
+        else if (cardDraw[0] == cardDraw [1])
+        {
+            Console.WriteLine("1) hit  ||  2) stand  ||  3) split");
+            hitOrStand = Convert.ToInt32(Console.ReadLine()); // reads the corresponding NUMBER to the action user wants to do
+        } 
+        else 
+        {
+             Console.WriteLine("1) hit  ||  2) stand  ");
+             hitOrStand = Convert.ToInt32(Console.ReadLine()); // reads the corresponding NUMBER to the action user wants to do
+        }
         if (hitOrStand == 1) // hit
         {
             Console.Clear();
@@ -124,7 +142,7 @@ if (playButton == 1) // just gives rules.
             }
             Console.WriteLine("Your grand total is " + grandtotal);
         }
-        
+
         Console.WriteLine("Press enter to continue");
         enter = Console.ReadLine();
         //                  -----------------------------DEALER-TURN-------------------
