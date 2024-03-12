@@ -1,5 +1,4 @@
-using System.ComponentModel;
-using System.Security.Cryptography;
+
 
 int betAmount; // variable that stores the value of the bet made by player
 int balance = 1000; // balance that player starts off with and can bet with.
@@ -47,7 +46,7 @@ if (playButton == 1) // just gives rules.
         for (int i = 0; i <= playerCards; i++)
         {
             Random numberGen = new Random();
-            num01 = numberGen.Next(4,6);
+            num01 = numberGen.Next(1,11);
             cardDraw.Add(num01);
         }
         Console.WriteLine("You drew:");
@@ -59,19 +58,19 @@ if (playButton == 1) // just gives rules.
 
         while (cardChoices < 4)
         {
-        if (cardDraw[0] == cardDraw [1] && cardDraw[0] + cardDraw[1] <= 11)
+        if (cardDraw[0] == cardDraw [1] && cardDraw[0] + cardDraw[1] <= 11 && cardDraw[0] + cardDraw[1] >= 9)
         {
-             Console.WriteLine("1) hit  ||  2) stand  ||  3) split  ||  4) double"); // gives user the basic blackjack options
+             Console.WriteLine("1) hit  ||  2) stand  ||  3) Double  ||  4) Split"); // gives user the basic blackjack options
              hitOrStand = Convert.ToInt32(Console.ReadLine()); // reads the corresponding NUMBER to the action user wants to do
         } 
-        else if (cardDraw[0] + cardDraw[1] <= 11)
+        else if (cardDraw[0] + cardDraw[1] <= 11 && cardDraw[0] + cardDraw[1] >= 9)
         {
-            Console.WriteLine("1) hit  ||  2) stand  ||  4) Double");
+            Console.WriteLine("1) hit  ||  2) stand  ||  3) Double");
             hitOrStand = Convert.ToInt32(Console.ReadLine()); // reads the corresponding NUMBER to the action user wants to do
         } 
         else if (cardDraw[0] == cardDraw [1])
         {
-            Console.WriteLine("1) hit  ||  2) stand  ||  3) split");
+            Console.WriteLine("1) hit  ||  2) stand  ||  4) split");
             hitOrStand = Convert.ToInt32(Console.ReadLine()); // reads the corresponding NUMBER to the action user wants to do
         } 
         else 
@@ -109,7 +108,7 @@ if (playButton == 1) // just gives rules.
             cardChoices = 4;
         } else  // bust. ends loop immediatly as user busted.
         {
-            Console.WriteLine("Your busted. Your grandtotal is 0");
+            Console.WriteLine("You busted. Your grandtotal is 0");
             cardChoices = 5;
             grandTotalSwitch = false;
         }
@@ -129,7 +128,22 @@ if (playButton == 1) // just gives rules.
             cardChoices = 4;
             grandTotalSwitch = false; // bool turns false as to not trigger the count for 4 cards
 
-        } else 
+        } else if (hitOrStand == 3)
+        {
+            betAmount *= 2;
+            Console.WriteLine("Your bet has doubled. Your new bet amount is: " + betAmount + "\nPress enter to continue the game.");
+            enter = Console.ReadLine();
+            
+            Console.Clear();
+
+        Console.WriteLine("You drew:");
+        for (int i = 0; i < hit; i++)
+        {
+           Console.WriteLine($" ___\n|   |\n| {cardDraw[i]} |\n|___|");
+        }
+        hitOrStand = 1;
+        }
+        else 
         {
             Console.WriteLine("You have chosen an invalid option"); 
         }
@@ -218,7 +232,7 @@ if (playButton == 1) // just gives rules.
         if (grandtotal > dealertotal)
         {
             betAmount  *= 2;
-            Console.WriteLine("\nCongrats you won! Here is double your bet: +" + betAmount);
+            Console.WriteLine("\nCongrats you won! Here is your winnings: +" + betAmount);
             balance += betAmount;
             Console.WriteLine("Your Balance: " + balance);
         } 
@@ -230,6 +244,8 @@ if (playButton == 1) // just gives rules.
         } 
         else 
         {
+            balance = 1000;
+            balance -= betAmount;
             Console.WriteLine("\nYou lost. You lose your bet amount: -" + betAmount);
             Console.WriteLine("Your Balance: " + balance);
         }
