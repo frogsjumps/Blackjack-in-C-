@@ -1,5 +1,4 @@
 
-
 int betAmount; // variable that stores the value of the bet made by player
 int balance = 1000; // balance that player starts off with and can bet with.
 int playButton; // lets player choose between 1(rules) or 2(casino)
@@ -29,8 +28,10 @@ if (playButton == 1) // just gives rules.
 {     
     Console.Clear(); // clears previous prompt
 
-    //while (balance != 0)
-    //{
+            List<int> cardDraw = new List<int>();
+
+    while (balance != 0)
+    {
         Console.Write("How much would you like to bet?");
         Console.Write("\t\t\t\t\t\t\t\t\tYour balance: " + balance + "\n"); // displays balance on top-right corner
         betAmount = Convert.ToInt32(Console.ReadLine()); // reads the bet amount
@@ -40,8 +41,6 @@ if (playButton == 1) // just gives rules.
             balance = balance - betAmount;
             Console.Clear();
             Console.Write("\t\t\t\t\t\t\t\t\t\t\t\tYour balance: " + balance + "\n");
-            
-            List<int> cardDraw = new List<int>();
 
         for (int i = 0; i <= playerCards; i++)
         {
@@ -190,7 +189,6 @@ if (playButton == 1) // just gives rules.
 
         while (dealertotal < 17 && cardChoices != 4)
         {
-            dealertotal = 0;
             dealerCards++;
             hit++;
 
@@ -219,8 +217,10 @@ if (playButton == 1) // just gives rules.
             else if (dealertotal == 21)
             {
                 Console.WriteLine("The dealer got a blackjack!");
-                cardChoices = 5;
+                cardChoices = 4;
             }
+
+            dealertotal = 0;
 
         }
         Console.WriteLine("The dealers total is: " + dealertotal + "\n\nPress enter to continue");
@@ -250,12 +250,30 @@ if (playButton == 1) // just gives rules.
             Console.WriteLine("Your Balance: " + balance);
         }
         
+        Console.WriteLine("Please press enter if you would like to continue");
+        enter = Console.ReadLine();
+
+        for (int i = 0; i < cardDraw.Count; i++)
+        {
+            cardDraw.RemoveAt(i);
+        }
+        
+         playertotal = 0; // the total of the player in each progression, every hit will cumulatively be added to this, and the end of the turn will be calculated by grandTotal
+         dealerCards = 2;
+         dealertotal = 0;
+         hit = 2;
+        cardChoices = 2;
+        cardcoins = 0;
+
+        Console.Clear();
+        
 
     }else 
     {
         Console.WriteLine("You cannot bet more than you have."); // prevents user from betting more than their balance
     }
-        
+
+    }   
     
     
 }
